@@ -28,6 +28,9 @@ export class Ticket {
     category: Category[];
 
     @Field((type) => String)
+    duration: String;
+
+    @Field((type) => String)
     createdAt: String;
 }
 

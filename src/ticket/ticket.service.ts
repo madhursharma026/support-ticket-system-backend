@@ -20,6 +20,13 @@ export class TicketService {
       if (ticketDetails.user_id !== userId) {
         throw new ConflictException(`Not Authorize to view ticket with ${id}`);
       } else {
+        // return ticketDetails
+        const todayDate = new Date();
+        todayDate.setHours(todayDate.getHours() - 72);
+        if (ticketDetails.createdAt < new Date(todayDate.setHours(todayDate.getHours() - 72))) {
+          ticketDetails.status = 'closed'
+          return await this.ticketRepo.save(ticketDetails);
+        }
         return ticketDetails
       }
     }
@@ -31,6 +38,13 @@ export class TicketService {
     if (ticketDetails === null) {
       throw new ConflictException(`No ticket exists with ${id}`);
     } else {
+      // return ticketDetails
+      const todayDate = new Date();
+      todayDate.setHours(todayDate.getHours() - 72);
+      if (ticketDetails.createdAt < new Date(todayDate.setHours(todayDate.getHours() - 72))) {
+        ticketDetails.status = 'closed'
+        return await this.ticketRepo.save(ticketDetails);
+      }
       return ticketDetails
     }
   }
@@ -50,6 +64,14 @@ export class TicketService {
   async getAllTicketsBySingleUser(userId: number) {
     if (!userId) throw new ConflictException(`No User Id Found`);
     let ticketDetails = await this.ticketRepo.find({ where: { user_id: userId }, relations: ['category'] });
+    for (const ticketDetail of ticketDetails) {
+      const todayDate = new Date();
+      todayDate.setHours(todayDate.getHours() - 72);
+      if (ticketDetail.createdAt < new Date(todayDate.setHours(todayDate.getHours() - 72))) {
+        ticketDetail.status = 'closed'
+        await this.ticketRepo.save(ticketDetail);
+      }
+    }
     return ticketDetails
   }
 
@@ -89,7 +111,17 @@ export class TicketService {
     let adminUserDetails = await this.authRepo.findOne({ where: { id: adminUserId } });
     if (adminUserDetails.userPosition === 'admin') {
       let ticketDetails = await this.ticketRepo.find({ where: { status: 'open' }, relations: ['category'] });
-      return ticketDetails
+      // return ticketDetails
+      for (const ticketDetail of ticketDetails) {
+        const todayDate = new Date();
+        todayDate.setHours(todayDate.getHours() - 72);
+        if (ticketDetail.createdAt < new Date(todayDate.setHours(todayDate.getHours() - 72))) {
+          ticketDetail.status = 'closed'
+          await this.ticketRepo.save(ticketDetail);
+        }
+      }
+      let ticketDetailsValue = await this.ticketRepo.find({ where: { status: 'open' }, relations: ['category'] });
+      return ticketDetailsValue
     } else {
       throw new ConflictException(`You are not authorize to view open tickets`);
     }

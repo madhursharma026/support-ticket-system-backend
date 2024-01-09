@@ -44,5 +44,8 @@ export class TicketEntity {
     category_id: string;
 
     @CreateDateColumn()
+    duration: Date;
+
+    @CreateDateColumn()
     createdAt: Date;
 }

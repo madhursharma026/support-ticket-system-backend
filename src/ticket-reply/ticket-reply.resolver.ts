@@ -13,8 +13,8 @@ export class TicketReplyResolver {
     }
 
     @Mutation(returns => TicketReply, { name: 'createTicketReply' })
-    createUser(@Args('createTicketReplyArgs') createTicketReplyArgs: CreateTicketReplyArgs) {
-        return this.ticketService.createUser(createTicketReplyArgs);
+    createTicketReply(@Args('createTicketReplyArgs') createTicketReplyArgs: CreateTicketReplyArgs) {
+        return this.ticketService.createTicketReply(createTicketReplyArgs);
     }
 
     @Mutation(() => [TicketReply], { name: 'getAllRepliesBySingleTicket' })

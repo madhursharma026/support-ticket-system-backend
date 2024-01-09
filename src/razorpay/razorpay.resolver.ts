@@ -17,6 +17,11 @@ export class RazorpayResolver {
         return this.razorrpayService.findTotalAmount(id);
     }
 
+    @Mutation(() => [Razorpay], { name: 'findAllUserAmount' })
+    findAllUserAmount() {
+        return this.razorrpayService.findAllUserAmount();
+    }
+
     @Mutation(returns => Razorpay, { name: 'createRazorpay' })
     createRazorpay(@Args('createRazorpayArgs') createRazorpayArgs: CreateRazorpayArgs) {
         return this.razorrpayService.createRazorpay(createRazorpayArgs);
