@@ -2,8 +2,8 @@ import { Auth } from "./schema/auth.schema";
 import { AuthService } from "./auth.service";
 import { LoginUserArgs } from "./args/login.auth.args";
 import { CreateUserArgs } from "./args/create.auth.args";
-import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CreateAdminArgs } from "./args/create-admin.args";
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
 @Resolver(of => Auth)
 export class AuthResolver {

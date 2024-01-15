@@ -1,5 +1,5 @@
 import { TicketEntity } from 'src/ticket/entities/ticket.entity';
-import { Column, CreateDateColumn, Entity, OneToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'category' })
 export class CategoryEntity {

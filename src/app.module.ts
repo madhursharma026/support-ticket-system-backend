@@ -16,6 +16,8 @@ import { TicketReplyEntity } from './ticket-reply/entities/ticket-reply.entity';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { RazorpayEntity } from './razorpay/entities/razorpay.entity';
 import { RazorpayModule } from './razorpay/razorpay.module';
+import { Tags } from './tags/schema/tags.schema';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -34,7 +36,7 @@ import { RazorpayModule } from './razorpay/razorpay.module';
         username: 'root',
         password: '',
         database: 'ticket-support',
-        entities: [AuthEntity, TicketEntity, TicketReplyEntity, CategoryEntity, RazorpayEntity],
+        entities: [AuthEntity, TicketEntity, TicketReplyEntity, CategoryEntity, RazorpayEntity, Tags],
         autoLoadEntities: true,
         synchronize: true,
       }),
@@ -58,7 +60,8 @@ import { RazorpayModule } from './razorpay/razorpay.module';
     TicketModule,
     TicketReplyModule,
     CategoryModule,
-    RazorpayModule
+    RazorpayModule,
+    TagsModule
   ],
   controllers: [AppController],
   providers: [AppService],

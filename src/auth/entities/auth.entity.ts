@@ -1,5 +1,5 @@
-import { RazorpayEntity } from 'src/razorpay/entities/razorpay.entity';
 import { TicketEntity } from 'src/ticket/entities/ticket.entity';
+import { RazorpayEntity } from 'src/razorpay/entities/razorpay.entity';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'auth' })

@@ -22,3 +22,4 @@ export class RazorpayEntity {
     @CreateDateColumn()
     createdAt: Date;
 }
+

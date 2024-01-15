@@ -23,4 +23,3 @@ export class Auth {
     @Field((type) => String)
     createdAt: String;
 }
-
